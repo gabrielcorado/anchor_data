@@ -1,0 +1,72 @@
+<!DOCTYPE>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Anchor Data - Examples</title>
+  <script type="text/javascript" src="../anchor_data.js"></script>
+  <script>
+    var clickEvent = function(el, cb) {
+      document.getElementById(el).addEventListener('click', cb);
+    }
+
+    window.addEventListener('load', function() {
+      // Data(anchor) and results
+      var data = new AnchorData();
+      this.flag = document.getElementById('flag_value');
+      this.compound = document.getElementById('compound_value');
+
+      // Update results
+      this.flag.innerText = data.get('flag');
+      this.compound.innerText = data.get('compound');
+
+      // Insert flag
+      clickEvent('insert_flag', function(e) {
+        data.insert('flag');
+      });
+
+      // Insert Compound
+      clickEvent('insert_compound', function(e) {
+        data.insert('compound', 'myvalue');
+      });
+
+      // Remove flag
+      clickEvent('remove_flag', function(e) {
+        data.remove('flag');
+      });
+
+      // Remove Compound
+      clickEvent('remove_compound', function(e) {
+        data.remove('compound');
+      });
+
+      //
+      window.addEventListener('dataRemoved', function(e){
+        // Update results
+        this.flag.innerText = data.get('flag');
+        this.compound.innerText = data.get('compound');
+      } );
+
+      //
+      window.addEventListener('dataInserted', function(e){
+        // Update results
+        this.flag.innerText = data.get('flag');
+        this.compound.innerText = data.get('compound');
+      } );
+    });
+  </script>
+</head>
+<body>
+
+  <div class="results">
+    <div><strong>Flag Value:</strong> <span id="flag_value"></span></div>
+    <div><strong>Compound Value:</strong> <span id="compound_value"></span></div>
+  </div>
+
+  <button id="insert_flag">Insert flag data</button>
+  <button id="insert_compound">Insert compound data</button>
+
+  <button id="remove_flag">Remove flag data</button>
+  <button id="remove_compound">Remove compound data</button>
+
+</body>
+</html>
