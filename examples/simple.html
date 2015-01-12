@@ -11,47 +11,45 @@
 
     window.addEventListener('load', function() {
       // Data(anchor) and results
-      var data = new AnchorData();
       this.flag = document.getElementById('flag_value');
       this.compound = document.getElementById('compound_value');
 
       // Update results
-      this.flag.innerText = data.get('flag');
-      this.compound.innerText = data.get('compound');
+      this.flag.innerHTML = AnchorData.get('flag');
+      this.compound.innerHTML = AnchorData.get('compound');
 
       // Insert flag
       clickEvent('insert_flag', function(e) {
-        data.insert('flag');
+        AnchorData.insert('flag');
       });
 
       // Insert Compound
       clickEvent('insert_compound', function(e) {
-        data.insert('compound', 'myvalue');
+        AnchorData.insert('compound', 'myvalue');
       });
 
       // Remove flag
       clickEvent('remove_flag', function(e) {
-        data.remove('flag');
+        AnchorData.remove('flag');
       });
 
       // Remove Compound
       clickEvent('remove_compound', function(e) {
-        data.remove('compound');
+        AnchorData.remove('compound');
       });
 
-      //
-      window.addEventListener('dataRemoved', function(e){
-        // Update results
-        this.flag.innerText = data.get('flag');
-        this.compound.innerText = data.get('compound');
-      } );
+      // Data updated
+      window.addEventListener('dataUpdated', (function(){
+        // Context
+        var _this = this;
 
-      //
-      window.addEventListener('dataInserted', function(e){
-        // Update results
-        this.flag.innerText = data.get('flag');
-        this.compound.innerText = data.get('compound');
-      } );
+        // Callback
+        return function(e){
+          // Update results
+          _this.flag.innerHTML = AnchorData.get('flag');
+          _this.compound.innerHTML = AnchorData.get('compound');
+        }
+      }).call(this));
     });
   </script>
 </head>
