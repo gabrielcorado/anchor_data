@@ -3,7 +3,7 @@
  * Use anchor as query string
  *
  * @author Gabriel Corado
- * @version 0.0.0
+ * @version 1.0.0
  */
 
 (function(){
@@ -186,25 +186,20 @@
      * @function
      * @param {String} key            Data Key
      * @param {String} value          Data value
-     * @param {Object} options        Options. [override{boolean}]
      */
     this.insert = function() {
       var key = arguments[0],
-          value = arguments[1],
-          options = arguments[2];
+          value = arguments[1];
 
       // Checks Key
       if( key == undefined || key == '' )
         throw 'data key cannot be blank.'
 
-      // Checks if exists to user override flag
-      if( (options != undefined && options.override) || !this.hasKey(key) ) {
-        // Insert
-        data[key] = value;
+      // Insert
+      data[key] = value;
 
-        // Trigger Event
-        eventTrigger('dataInserted', {key: key});
-      }
+      // Trigger Event
+      eventTrigger('dataInserted', {key: key});
 
       // Generate hash
       this.generateHash();

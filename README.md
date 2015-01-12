@@ -20,7 +20,6 @@ The lib use `document.location.hash` to store information like query string. If 
 To insert you can pass 3 arguments are:
 * **String** `key`
 * **String** `value`
-* **Object** `options` - that will accept only flag **override** wich is marked the lib override current value.
 
 ```javascript
 // Simple
@@ -28,12 +27,6 @@ AnchorData.insert('flag'); // Inserts #flag
 
 // Compound
 AnchorData.insert('compound', 'value'); // Insert #compound=value
-
-// Without override
-AnchorData.insert('compound', 'new_value'); // Will not change #compound=value
-
-// With override
-AnchorData.insert('compound', 'new_value', {override: true}); // Will change #compound=new_value
 ```
 
 ## remove
