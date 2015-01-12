@@ -3,7 +3,7 @@
  * Use anchor as query string
  *
  * @author Gabriel Corado
- * @version 1.0.0
+ * @version 1.0.1
  */
 
 (function(){
@@ -142,7 +142,7 @@
      * @function
      * @private
      */
-    this.generateHash = function() {
+    var generateHash = function() {
       // hashes and scroll top value
       var hashes = [],
           scrollTop = document.body.scrollTop;
@@ -202,7 +202,7 @@
       eventTrigger('dataInserted', {key: key});
 
       // Generate hash
-      this.generateHash();
+      generateHash();
     }
 
     /*
@@ -225,7 +225,7 @@
       }
 
       // Generate hash
-      this.generateHash();
+      generateHash();
     }
 
     /*
